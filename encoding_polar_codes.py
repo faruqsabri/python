@@ -14,3 +14,18 @@ reliability_sequence_1 = np.delete(reliability_sequence, np.where(reliability_se
 
 #create the message in randomized manner
 message = np.random.randint(2, size=message_length)
+
+#insert message into non-frozen position based on reliability sequence for N codeword length
+for index, value in zip(reliability_sequence_1[8:], message):
+    codeword[index] = value #credit to deanhystad of python-forum.io
+    
+"""#this script has same result as previous, I am writing this one for respect the answer of my fellow forum member.
+x = len(reliability_sequence_1)-len(message)
+for n, i in enumerate(reliability_sequence_1[x:]):
+    if message[n]: codeword[i] = message[n] #credit to naughtyCat of python-forum.io"""
+
+"""#this script also has same result in codeword and I got it from my senior Wei Lantian in Kamabe Laboratory. ありがとうございます, Wei さん.
+message_list = list(message)
+non_frozen = (reliability_sequence_1 + 1)[(codeword_length + 1)-message_length:]
+for i in non_frozen:
+    codeword[i - 1] = message_list.pop(0)"""
