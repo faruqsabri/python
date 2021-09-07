@@ -1,5 +1,3 @@
-# python
-
 # bit_flipping_algorithm.py
 This program is created from algorithm 2.2 of Iterative Error Correction book by Prof. Sarah J. Johnson. 
 
