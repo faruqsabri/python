@@ -29,3 +29,18 @@ message_list = list(message)
 non_frozen = (reliability_sequence_1 + 1)[(codeword_length + 1)-message_length:]
 for i in non_frozen:
     codeword[i - 1] = message_list.pop(0)"""
+
+#Create generator matrix
+generator_matrix = np.array([[1, 0], [1, 1]])
+generator_matrix_multiplier = np.array([[1, 0], [1, 1]])
+minimum_kronecker = 2
+
+#Calculate the generator matrix based on the kronecker multiplier
+while minimum_kronecker <= kronecker_multiplier:
+    generator_matrix = np.kron(generator_matrix, generator_matrix_multiplier)
+    minimum_kronecker = minimum_kronecker + 1
+
+#Generate polar codes from codeword and generator matrix
+polar_codes = np.mod(np.matmul(codeword, generator_matrix), 2) #From Arikan's paper about polar code, it should be XOR operation, and here I am using a mod of 2 because it has similarity with XOR which is if the number of zeros or ones is even, the result is 0. And in this mod 2, if the number is even, the result will be 0, and vice versa.
+
+print (polar_codes)
